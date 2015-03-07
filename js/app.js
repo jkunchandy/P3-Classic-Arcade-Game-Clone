@@ -16,7 +16,11 @@ var Enemy = function() {
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
-    // all computers.
+    // all computers.  (distance=rate x time)
+    if (this.x >400) { this.x=0; this.y = 230 * Math.random();}
+    else {
+        this.x+= this.speed * dt;
+    }
 }
 
 // Draw the enemy on the screen, required method for game
@@ -28,6 +32,9 @@ Enemy.prototype.render = function() {
 var Player = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
+    // Starting position for Player. (0,0) is top left of screen
+    this.x = 230 * Math.random();
+    this.y = 350;
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -37,7 +44,11 @@ var Player = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 Player.prototype.update = function() {}
-Player.prototype.render = function() {}
+
+// draw Player on screen
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
 Player.prototype.handleInput = function() {}
 
 // Now instantiate your objects.
