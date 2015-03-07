@@ -85,7 +85,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -100,6 +100,20 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+
+    function checkCollisions() {
+        var range = 25; //boundary extension from Enemy coordinate which will be considered as space of Enemy and therefore a collision.
+        for (i in allEnemies){
+        //if Player coordinate is inside of Enemy coordinate box, then collision
+        if ( (player.x <= allEnemies[i].x + range) && (player.x >= allEnemies[i].x - range) &&
+            (player.y <= allEnemies[i].y + range) && (player.y >= allEnemies[i].y - range) ) {
+                player.y=400;
+                console.log("Hi bug!");
+            }
+        }
+
     }
 
     /* This function initially draws the "game level", it will then call
