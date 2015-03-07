@@ -43,13 +43,39 @@ var Player = function() {
 
 // This class requires an update(), render() and
 // a handleInput() method.
-Player.prototype.update = function() {}
+// move Player back to bottom when water at top reached
+Player.prototype.update = function() {
+    if (this.y<=0) this.y=400;
+}
 
 // draw Player on screen
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-Player.prototype.handleInput = function() {}
+
+// check user directed movement of Player
+// use === to check both type and value
+Player.prototype.handleInput = function(keyPressed) {
+    if (keyPressed === 'up') {
+        if (this.y <=0) this.y=400;
+        else this.y -=15;
+    }
+    else
+    if (keyPressed === 'down') {
+        if (this.y <=400) this.y +=15;
+    }
+    else
+    if (keyPressed === 'left') {
+        if (this.x <=0) this.x=400;
+        else this.x -=15;
+    }
+    else
+    if (keyPressed === 'right') {
+        if (this.x >=400) this.x=0;
+        else this.x +=15;
+    }
+
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
