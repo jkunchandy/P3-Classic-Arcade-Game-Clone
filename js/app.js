@@ -45,15 +45,17 @@ var Player = function() {
 // a handleInput() method.
 // move Player back to bottom when water at top reached
 Player.prototype.update = function() {
-    if (this.y<=0) this.y=400;
+    if (allPlayers.length)
+        if (this.y<=0) this.y=400;
 }
 
 // draw Player on screen
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    if (allPlayers.length)
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-// check user directed movement of Player
+// check user directed movement of Player and reposition Player to next location in direction of keypress
 // use === to check both type and value
 Player.prototype.handleInput = function(keyPressed) {
     if (keyPressed === 'up') {
@@ -79,14 +81,18 @@ Player.prototype.handleInput = function(keyPressed) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
 var enemy1 = new Enemy();
 var enemy2 = new Enemy();
 var enemy3 = new Enemy();
 var enemy4 = new Enemy();
 var allEnemies = [enemy1,enemy2,enemy3,enemy4];
-var player = new Player();
-
+// Place the player object in a variable called player
+// Give user 3 players for the game
+var player1 = new Player();
+var player2 = new Player();
+var player3 = new Player();
+var allPlayers = [player1,player2,player3];
+var player = allPlayers[2];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

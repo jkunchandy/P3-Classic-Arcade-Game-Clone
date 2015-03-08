@@ -84,6 +84,8 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
+
+        if (allPlayers.length == 0) return;
         updateEntities(dt);
         checkCollisions();
     }
@@ -99,18 +101,32 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        player.update();
+
+        allPlayers.forEach(function(player) {
+            player.update();
+        });
     }
 
 
     function checkCollisions() {
         var range = 25; //boundary extension from Enemy coordinate which will be considered as space of Enemy and therefore a collision.
+
+        //if (allPlayers.length == 0) return;
+
         for (i in allEnemies){
         //if Player coordinate is inside of Enemy coordinate box, then collision
         if ( (player.x <= allEnemies[i].x + range) && (player.x >= allEnemies[i].x - range) &&
             (player.y <= allEnemies[i].y + range) && (player.y >= allEnemies[i].y - range) ) {
+                console.log("Hit bug!");
                 player.y=400;
-                console.log("Hi bug!");
+                allPlayers.pop();
+                if (allPlayers.length) player=allPlayers[allPlayers.length-1];
+                else {  // display GAME OVER!! on screen
+                        //var ctx = document.getElementById('canvas').getContext('2d');
+                        ctx.font="40px serif";
+                        ctx.fillText("GAME OVER!",150,450);
+                }
+                console.log("Game Over!");
             }
         }
 
@@ -171,7 +187,9 @@ var Engine = (function(global) {
             enemy.render();
         });
 
-        player.render();
+        allPlayers.forEach(function(player) {
+            player.render();
+        });
     }
 
     /* This function does nothing but it could have been a good place to
