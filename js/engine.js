@@ -125,8 +125,9 @@ var Engine = (function(global) {
                         //var ctx = document.getElementById('canvas').getContext('2d');
                         ctx.font="40px serif";
                         ctx.fillText("GAME OVER!",150,450);
+                        console.log("Game Over!");
                 }
-                console.log("Game Over!");
+
             }
         }
 
