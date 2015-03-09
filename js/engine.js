@@ -48,6 +48,7 @@ var Engine = (function(global) {
 
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
+         * If game is over then dont waste CPU time and just return.
          */
          if (!gameOver) {
             update(dt);
@@ -109,11 +110,13 @@ var Engine = (function(global) {
     }
 
 
+    // check if Player has collided with an Enemy
     function checkCollisions() {
-        var range = 25; //boundary extension from Enemy coordinate which will be considered as space of Enemy and therefore a collision.
+        //boundary extension surrounding Enemy coordinate point which will be considered as space occupied by Enemy and therefore a collision.
+        var range = 25;
 
-        for (i in allEnemies){
         //if Player coordinate is inside of Enemy coordinate box, then collision
+        for (i in allEnemies){
         if ( (player.x <= allEnemies[i].x + range) && (player.x >= allEnemies[i].x - range) &&
             (player.y <= allEnemies[i].y + range) && (player.y >= allEnemies[i].y - range) ) {
                 console.log("Hit bug!");
@@ -168,6 +171,7 @@ var Engine = (function(global) {
 
         renderEntities();
 
+        // when last Player dies, display GAME OVER message on screen
         if (gameOver) {
              ctx.font="40px serif";
              ctx.fillText("GAME OVER!",150,450);

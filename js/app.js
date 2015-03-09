@@ -43,6 +43,7 @@ var Player = function() {
 
 // This class requires an update(), render() and
 // a handleInput() method.
+
 // move Player back to bottom when water at top reached
 Player.prototype.update = function() {
     if (allPlayers.length)
@@ -88,6 +89,8 @@ var enemy4 = new Enemy();
 var allEnemies = [enemy1,enemy2,enemy3,enemy4];
 // Place the player object in a variable called player
 // Give user 3 players for the game
+// Place all Player objects in an array called allPlayers
+//gameOver flag will become true when last Player dies
 var player1 = new Player();
 var player2 = new Player();
 var player3 = new Player();
