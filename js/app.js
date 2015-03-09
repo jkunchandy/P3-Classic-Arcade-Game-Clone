@@ -93,6 +93,7 @@ var player2 = new Player();
 var player3 = new Player();
 var allPlayers = [player1,player2,player3];
 var player = allPlayers[2];
+var gameOver=false;
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

@@ -41,7 +41,6 @@ var Engine = (function(global) {
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
-         * would be the same for everyone (regardless of how fast their
          * computer is) - hurray time!
          */
         var now = Date.now(),
@@ -50,8 +49,10 @@ var Engine = (function(global) {
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
-        update(dt);
-        render();
+         if (!gameOver) {
+            update(dt);
+            render();
+        }
 
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
@@ -85,7 +86,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
 
-        if (allPlayers.length == 0) return;
+       // if (allPlayers.length == 0) return;
         updateEntities(dt);
         checkCollisions();
     }
@@ -111,8 +112,6 @@ var Engine = (function(global) {
     function checkCollisions() {
         var range = 25; //boundary extension from Enemy coordinate which will be considered as space of Enemy and therefore a collision.
 
-        //if (allPlayers.length == 0) return;
-
         for (i in allEnemies){
         //if Player coordinate is inside of Enemy coordinate box, then collision
         if ( (player.x <= allEnemies[i].x + range) && (player.x >= allEnemies[i].x - range) &&
@@ -121,13 +120,7 @@ var Engine = (function(global) {
                 player.y=400;
                 allPlayers.pop();
                 if (allPlayers.length) player=allPlayers[allPlayers.length-1];
-                else {  // display GAME OVER!! on screen
-                        //var ctx = document.getElementById('canvas').getContext('2d');
-                        ctx.font="40px serif";
-                        ctx.fillText("GAME OVER!",150,450);
-                        console.log("Game Over!");
-                }
-
+                else gameOver=true;
             }
         }
 
@@ -174,6 +167,12 @@ var Engine = (function(global) {
 
 
         renderEntities();
+
+        if (gameOver) {
+             ctx.font="40px serif";
+             ctx.fillText("GAME OVER!",150,450);
+             console.log("Game Over!");
+         }
     }
 
     /* This function is called by the render function and is called on each game
