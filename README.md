@@ -8,6 +8,11 @@ for self-checking their submission.
                                            Classic Arcade Game
 Goal: Help get the boy move vertically up the board without getting hit by any of the enemies.
 
+Starting the game:
+Open a web browser and in the web addresss selection area type in the location of the index.html file.
+ eg: "c:/documents/games/P3-Classic-Arcade-Game-Clone/index.html"
+The web browswer will load the index.html file and start the game.
+ 
 Playing the game:
 
 To move: Use the up/down/left/right keys to move the boy around on the board.
