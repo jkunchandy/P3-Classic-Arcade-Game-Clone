@@ -12,9 +12,8 @@
 
 
 // Enemies our player must avoid
+// Each instance will have its own speed and initial start
 var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
     //define bug's random start position and random speed
     this.x = 0;
     this.y = 230 * Math.random();
@@ -43,10 +42,8 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-// Now write your own player class
+// The player class controlled by the user
 var Player = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
     // Starting position for Player. (0,0) is top left of screen
     this.x = 230 * Math.random();
     this.y = 350;
@@ -56,7 +53,7 @@ var Player = function() {
     this.sprite = 'images/char-boy.png';
 }
 
-// This class requires an update(), render() and
+// The Player class requires an update(), render() and
 // a handleInput() method.
 
 // move Player back to bottom when water at top reached
@@ -92,7 +89,7 @@ Player.prototype.handleInput = function(keyPressed) {
 
 }
 
-// Now instantiate your objects.
+// Now instantiate our objects.
 // Place all enemy objects in an array called allEnemies
 var enemy1 = new Enemy();
 var enemy2 = new Enemy();
