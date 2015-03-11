@@ -1,10 +1,24 @@
+/* App.js
+ * This file defines the 2 class objects - Enemy and Player.
+ * Also sets up the browswer event listener - we will be listening for key
+ * presses on the up, down, left, right arrow keys.
+ * Also instantiates and builds an array of Enemy objects which will be moving
+ * horizontally on the screen.
+ * Also instantiates and builds an array of Player objects for use in
+ * game. Only one Player will be available at any given moment. When a Player
+ * dies, the next Player object in the array continues the game.
+ * The game ends when the last Player object in the array dies.
+ */
+
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-  this.x = 0;
-  this.y = 230 * Math.random();
-  this.speed = 10 + Math.random()*200; //defines bug's random start position and random speed
+    //define bug's random start position and random speed
+    this.x = 0;
+    this.y = 230 * Math.random();
+    this.speed = 10 + Math.random()*200;
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -17,7 +31,8 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.  (distance=rate x time)
-    if (this.x >400) { this.x=0; this.y = 230 * Math.random();}
+    if (this.x >400) {
+        this.x=0; this.y = 230 * Math.random();}
     else {
         this.x+= this.speed * dt;
     }
@@ -63,17 +78,14 @@ Player.prototype.handleInput = function(keyPressed) {
         if (this.y <=0) this.y=400;
         else this.y -=15;
     }
-    else
-    if (keyPressed === 'down') {
+    else if (keyPressed === 'down') {
         if (this.y <=400) this.y +=15;
     }
-    else
-    if (keyPressed === 'left') {
+    else if (keyPressed === 'left') {
         if (this.x <=0) this.x=400;
         else this.x -=15;
     }
-    else
-    if (keyPressed === 'right') {
+    else if (keyPressed === 'right') {
         if (this.x >=400) this.x=0;
         else this.x +=15;
     }
@@ -90,7 +102,7 @@ var allEnemies = [enemy1,enemy2,enemy3,enemy4];
 // Place the player object in a variable called player
 // Give user 3 players for the game
 // Place all Player objects in an array called allPlayers
-//gameOver flag will become true when last Player dies
+// gameOver flag will become true when last Player dies
 var player1 = new Player();
 var player2 = new Player();
 var player3 = new Player();
