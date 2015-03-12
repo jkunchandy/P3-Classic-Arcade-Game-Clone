@@ -9,7 +9,7 @@
  * dies, the next Player object in the array continues the game.
  * The game ends when the last Player object in the array dies.
  */
-
+"use strict";
 
 // Enemies our player must avoid
 // Each instance will have its own speed and initial start
@@ -22,7 +22,7 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -35,12 +35,12 @@ Enemy.prototype.update = function(dt) {
     else {
         this.x+= this.speed * dt;
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // The player class controlled by the user
 var Player = function() {
@@ -51,7 +51,7 @@ var Player = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/char-boy.png';
-}
+};
 
 // The Player class requires an update(), render() and
 // a handleInput() method.
@@ -60,13 +60,13 @@ var Player = function() {
 Player.prototype.update = function() {
     if (allPlayers.length)
         if (this.y<=0) this.y=400;
-}
+};
 
 // draw Player on screen
 Player.prototype.render = function() {
     if (allPlayers.length)
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // check user directed movement of Player and reposition Player to next location in direction of keypress
 // use === to check both type and value
@@ -87,7 +87,7 @@ Player.prototype.handleInput = function(keyPressed) {
         else this.x +=15;
     }
 
-}
+};
 
 // Now instantiate our objects.
 // Place all enemy objects in an array called allEnemies
