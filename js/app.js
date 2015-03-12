@@ -9,6 +9,8 @@
  * dies, the next Player object in the array continues the game.
  * The game ends when the last Player object in the array dies.
  */
+ /*Used jshint.com to check code for errors.
+ */
 "use strict";
 
 // Enemies our player must avoid
